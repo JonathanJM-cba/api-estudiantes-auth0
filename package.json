@@ -1,13 +1,29 @@
 {
   "name": "api-estudiantes-auth0",
   "version": "1.0.0",
+  "type": "commonjs",
   "description": "CRUD básico de estudiantes con autenticación Auth0",
   "main": "index.js",
   "scripts": {
+    "tsc": "tsc",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "start": "node ./dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.15.1"
+  "packageManager": "pnpm@10.15.1",
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/morgan": "^1.9.10",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "morgan": "^1.10.1"
+  }
 }
