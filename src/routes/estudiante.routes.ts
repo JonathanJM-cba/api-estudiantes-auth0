@@ -11,4 +11,6 @@ const estudianteController = new EstudianteController(estudianteService);
 
 router.get("/", estudianteController.getAllEstudiantesCtrl);
 
+router.post("/", estudianteController.createEstudianteCtrl);
+
 export default router;

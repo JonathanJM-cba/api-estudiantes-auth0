@@ -8,7 +8,7 @@ export class InMemoryEstudianteRepository implements IEstudianteRepository {
     return this.estudiantes;
   }
 
-  async getById(id: number): Promise<Estudiante | null> {
+  async getById(id: string): Promise<Estudiante | null> {
     const estudiante = this.estudiantes.find((e) => e.id === id);
     return estudiante || null;
   }
@@ -18,14 +18,14 @@ export class InMemoryEstudianteRepository implements IEstudianteRepository {
     return estudiante;
   }
 
-  update(id: number, estudiante: Partial<Estudiante>): void {
+  update(id: string, estudiante: Partial<Estudiante>): void {
     const index = this.estudiantes.findIndex((e) => e.id === id);
     if (index !== -1) {
       this.estudiantes[index] = { ...this.estudiantes[index], ...estudiante };
     }
   }
 
-  delete(id: number): void {
+  delete(id: string): void {
     const index = this.estudiantes.findIndex((e) => e.id === id);
     if (index !== -1) {
       this.estudiantes.splice(index, 1);

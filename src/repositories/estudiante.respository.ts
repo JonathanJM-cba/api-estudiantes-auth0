@@ -3,11 +3,11 @@ import { Estudiante } from "../entities/estudiante.entities";
 export interface IEstudianteRepository {
   getAll(): Promise<Estudiante[]>;
 
-  getById(id: number): Promise<Estudiante | null>;
+  getById(id: string): Promise<Estudiante | null>;
 
   create(estudiante: Estudiante): Promise<Estudiante>;
 
-  update(id: number, estudiante: Partial<Estudiante>): void;
+  update(id: string, estudiante: Partial<Estudiante>): void;
 
-  delete(id: number): void;
+  delete(id: string): void;
 }

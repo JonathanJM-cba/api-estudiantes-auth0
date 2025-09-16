@@ -10,4 +10,8 @@ export class EstudianteService {
   async getAllEstudiantes(): Promise<Estudiante[]> {
     return this.estudiantesRepo.getAll();
   }
+
+  async createEstudiante(estudiante: Estudiante): Promise<Estudiante> {
+    return this.estudiantesRepo.create(estudiante);
+  }
 }
