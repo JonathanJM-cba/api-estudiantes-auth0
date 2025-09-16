@@ -15,4 +15,6 @@ router.post("/", estudianteController.createEstudianteCtrl);
 
 router.get("/:id", estudianteController.getEstudianteByIdCtrl);
 
+router.delete("/:id", estudianteController.deleteEstudianteCtrl);
+
 export default router;

@@ -18,4 +18,8 @@ export class EstudianteService {
   async getEstudianteById(id: string): Promise<Estudiante | null> {
     return this.estudiantesRepo.getById(id);
   }
+
+  deleteEstudiante(id: string): void {
+    this.estudiantesRepo.delete(id);
+  }
 }

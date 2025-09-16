@@ -24,22 +24,17 @@ export class EstudianteController {
     const { nombre, apellido, edad } = req.body;
     try {
       const id = uuidv4();
-      const dataEstudainte: Estudiante = new Estudiante(
+      const dataEstudiante: Estudiante = new Estudiante(
         id,
         nombre,
         apellido,
         edad
       );
-      const newEstudiante = await this.estudianteService.createEstudiante(
-        dataEstudainte
-      );
+      const newEstudiante: Estudiante =
+        await this.estudianteService.createEstudiante(dataEstudiante);
       res.status(201).json({
         message: "Estudiante creado exitosamente",
-        estudiante: {
-          nombre,
-          apellido,
-          edad,
-        },
+        newEstudiante,
       });
     } catch (error) {
       console.log("Error al crear el estudiante:", error);
@@ -67,6 +62,25 @@ export class EstudianteController {
       res
         .status(500)
         .json({ message: "Error al intentar obtener el estudiante por ID" });
+    }
+  };
+
+  deleteEstudianteCtrl = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    try {
+      const estudiante = await this.estudianteService.getEstudianteById(id);
+      if (!estudiante) {
+        return res.status(404).json({ message: "Estudiante no encontrado" });
+      }
+
+      this.estudianteService.deleteEstudiante(id);
+
+      res.status(200).json({ message: "Estudiante eliminado exitosamente" });
+    } catch (error) {
+      console.log("Error al eliminar el estudiante:", error);
+      res
+        .status(500)
+        .json({ message: "Error al intentar eliminar el estudiante" });
     }
   };
 }
