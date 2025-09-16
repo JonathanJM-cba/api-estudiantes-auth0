@@ -14,4 +14,8 @@ export class EstudianteService {
   async createEstudiante(estudiante: Estudiante): Promise<Estudiante> {
     return this.estudiantesRepo.create(estudiante);
   }
+
+  async getEstudianteById(id: string): Promise<Estudiante | null> {
+    return this.estudiantesRepo.getById(id);
+  }
 }

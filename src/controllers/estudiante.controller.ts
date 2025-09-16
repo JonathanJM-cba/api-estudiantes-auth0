@@ -48,4 +48,25 @@ export class EstudianteController {
         .json({ message: "Error al intentar crear el estudiante" });
     }
   };
+
+  getEstudianteByIdCtrl = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    try {
+      const estudiante: Estudiante | null =
+        await this.estudianteService.getEstudianteById(id);
+
+      if (!estudiante) {
+        return res.status(404).json({
+          message: "Estudiante no encontrado",
+        });
+      }
+
+      res.status(200).json(estudiante);
+    } catch (error) {
+      console.log("Error al obtener el estudiante por ID:", error);
+      res
+        .status(500)
+        .json({ message: "Error al intentar obtener el estudiante por ID" });
+    }
+  };
 }

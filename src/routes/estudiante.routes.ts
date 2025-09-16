@@ -13,4 +13,6 @@ router.get("/", estudianteController.getAllEstudiantesCtrl);
 
 router.post("/", estudianteController.createEstudianteCtrl);
 
+router.get("/:id", estudianteController.getEstudianteByIdCtrl);
+
 export default router;
