@@ -22,4 +22,8 @@ export class EstudianteService {
   deleteEstudiante(id: string): void {
     this.estudiantesRepo.delete(id);
   }
+
+  updateEstudiante(id: string, estudiante: Partial<Estudiante>): void {
+    this.estudiantesRepo.update(id, estudiante);
+  }
 }

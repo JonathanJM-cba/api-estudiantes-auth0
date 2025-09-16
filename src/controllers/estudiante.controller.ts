@@ -83,4 +83,28 @@ export class EstudianteController {
         .json({ message: "Error al intentar eliminar el estudiante" });
     }
   };
+
+  updateEstudianteCtrl = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const { nombre, apellido, edad } = req.body;
+    try {
+      const estudiante: Estudiante | null =
+        await this.estudianteService.getEstudianteById(id);
+      if (!estudiante)
+        return res.status(404).json({ message: "Estudiante no encontrado" });
+
+      estudiante.nombre = nombre || estudiante.nombre;
+      estudiante.apellido = apellido || estudiante.apellido;
+      estudiante.edad = edad || estudiante.edad;
+
+      this.estudianteService.updateEstudiante(id, estudiante);
+
+      res.status(200).json({ message: "Estudiante actualizado exitosamente" });
+    } catch (error) {
+      console.log("Error al actualizar el estudiante:", error);
+      res
+        .status(500)
+        .json({ message: "Error al intentar actualizar el estudiante" });
+    }
+  };
 }
